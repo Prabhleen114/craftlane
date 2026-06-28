@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,19 +8,22 @@ const inter = Inter({
   display: "swap",
 });
 
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+});
 export const metadata: Metadata = {
   title: "Ekora — India's First Creator Commerce Platform",
   description:
-    "Discover India's best Instagram creators in one place. Buy unique handmade products directly from verified creators — no DMs, no hassle. From Reels to Cart.",
+    "Discover India's best Instagram creators in one place. Buy unique handmade products directly from verified creators — no DMs, no hassle.",
   keywords: [
     "creator marketplace",
     "Instagram sellers",
     "handmade products India",
     "creator commerce",
     "buy from Instagram creators",
-    "handmade marketplace",
     "Ekora",
-    "independent creators India",
   ],
   authors: [{ name: "Ekora" }],
   openGraph: {
@@ -35,31 +37,17 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ekora — India's First Creator Commerce Platform",
-    description:
-      "Discover India's best Instagram creators in one place. From Reels to Cart.",
-  },
-  robots: {
-    index: true,
-    follow: true,
+    description: "Discover India's best Instagram creators. From Reels to Cart.",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${newsreader.variable} font-sans antialiased bg-white text-zinc-900`}>
+        {children}
       </body>
     </html>
   );

@@ -1,166 +1,126 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "next-themes";
-import { GradientText } from "./ui/GradientText";
 import Link from "next/link";
-import { cn } from "./ui/GlassCard";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 8);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [mobileMenuOpen]);
+
   const navLinks = [
-    { name: "Platform", href: "#" },
-    { name: "Creators", href: "#" },
-    { name: "Categories", href: "#" },
-    { name: "How it Works", href: "#" },
+    { name: "Platform", href: "/platform" },
+    { name: "Categories", href: "/categories" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "Why Ekora", href: "/why-ekora" },
+    { name: "FAQ", href: "/faq" },
   ];
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white/70 dark:bg-zinc-950/70 backdrop-blur-xl border-b border-zinc-200/50 dark:border-zinc-800/50 py-3"
-          : "bg-transparent py-5"
-      )}
-    >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <span className="font-bold text-2xl tracking-tight">
-            <GradientText>ekora</GradientText>
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
+    <>
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          isScrolled || mobileMenuOpen ? "bg-white border-b border-zinc-200" : "bg-white/80 backdrop-blur-md"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
+          {/* Left: Brand */}
+          <div className="flex-1 flex justify-start">
             <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+              href="/"
+              className="font-semibold text-xl text-zinc-900 tracking-tight"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              {link.name}
+              Ekora
             </Link>
-          ))}
-        </div>
+          </div>
 
-        {/* Desktop Actions */}
-        <div className="hidden md:flex items-center space-x-4">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400"
-            aria-label="Toggle theme"
-          >
-            <Sun className="h-5 w-5 hidden dark:block" />
-            <Moon className="h-5 w-5 block dark:hidden" />
-          </button>
-          <Link
-            href="#early-access"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('early-access')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
-          >
-            Start Selling
-          </Link>
-          <Link
-            href="#platform"
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="btn-primary"
-          >
-            Explore Marketplace
-          </Link>
-        </div>
+          {/* Center: Desktop Nav */}
+          <nav className="hidden md:flex justify-center items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
 
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center space-x-4">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400"
-          >
-            <Sun className="h-5 w-5 hidden dark:block" />
-            <Moon className="h-5 w-5 block dark:hidden" />
-          </button>
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-zinc-600 dark:text-zinc-400 p-2"
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-      </div>
+          {/* Right: CTA & Mobile Toggle */}
+          <div className="flex-1 flex justify-end items-center gap-4">
+            <Link
+              href="/start-selling"
+              className="hidden md:inline-flex items-center justify-center border border-zinc-300 rounded-full px-5 py-2 text-sm font-semibold text-zinc-900 hover:border-zinc-400 hover:bg-zinc-50 transition-all"
+            >
+              Start Selling
+            </Link>
 
-      {/* Mobile Menu Dropdown */}
+            <button
+              className="md:hidden p-2 -mr-2 text-zinc-900 focus:outline-none"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Full-Screen Mobile Menu Overlay */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 shadow-xl md:hidden"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden flex flex-col"
           >
-            <div className="p-6 flex flex-col space-y-4">
+            <div className="flex flex-col gap-6 flex-1">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
-                  className="text-base font-medium text-zinc-800 dark:text-zinc-200"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const id = link.href.replace('#', '');
-                    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-                    setIsMobileMenuOpen(false);
-                  }}
+                  className="text-3xl font-bold font-serif tracking-tight text-zinc-900 hover:text-zinc-600 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <div className="h-px w-full bg-zinc-200 dark:bg-zinc-800 my-2" />
+            </div>
+            
+            <div className="pb-12 mt-auto">
               <Link
-                href="#early-access"
-                className="text-base font-medium text-zinc-800 dark:text-zinc-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('early-access')?.scrollIntoView({ behavior: 'smooth' });
-                  setIsMobileMenuOpen(false);
-                }}
+                href="/start-selling"
+                className="flex items-center justify-center bg-zinc-900 text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-zinc-800 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Start Selling
-              </Link>
-              <Link
-                href="#platform"
-                className="btn-primary justify-center w-full mt-2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' });
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                Explore Marketplace
+                Start Selling Today
               </Link>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }
