@@ -1,173 +1,147 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowRight, Search, ShoppingBag, Star, BadgeCheck } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "./ui/Badge";
-import { ScrollReveal } from "./ui/ScrollReveal";
-import { staggerContainer, staggerItem } from "@/lib/animations";
+import { ArrowRight, Search, ShieldCheck, ShoppingBag, TrendingUp, DollarSign } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center pt-24 pb-12 lg:pt-32 lg:pb-12 overflow-hidden">
-      {/* Premium Animated Gradient Background */}
-      <div className="absolute inset-0 bg-zinc-50 dark:bg-zinc-950 -z-20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(225,29,72,0.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(225,29,72,0.15),rgba(0,0,0,0))] -z-10" />
-      
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
-        
-        {/* Left Column: Copy */}
-        <motion.div 
-          className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={staggerItem} className="mb-6 flex justify-center lg:justify-start">
-            <Badge variant="outline" className="border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 bg-rose-50/50 dark:bg-rose-950/20 backdrop-blur-md">
-              Commerce Infrastructure for Creators
-            </Badge>
-          </motion.div>
+    <section className="bg-white pt-32 pb-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+        {/* Left Column: Copy & CTAs */}
+        <div className="flex flex-col items-start text-left relative z-10">
+          <div className="inline-flex items-center gap-2 border border-zinc-200 bg-zinc-50 rounded-full px-3 py-1 text-xs font-semibold text-zinc-600 mb-8 shadow-sm">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            Early Access — First 100 Founding Creators
+          </div>
 
-          <motion.h1 
-            variants={staggerItem}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white mb-6 leading-[1.1]"
-          >
-            From Reels to <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-500">Cart.</span>
-          </motion.h1>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif tracking-tight text-zinc-900 mb-6 leading-[1.1]">
+            India&apos;s First Creator Commerce Platform.
+          </h1>
 
-          <motion.p 
-            variants={staggerItem}
-            className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0"
-          >
-            Ekora is launching soon. Secure your storefront today and be among the first creators to sell without DMs.
-          </motion.p>
+          <p className="text-xl text-zinc-500 mb-10 max-w-lg leading-relaxed">
+            Helping Instagram creators build real businesses beyond DMs. One
+            professional storefront. One secure checkout.
+          </p>
 
-          <motion.div 
-            variants={staggerItem}
-            className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
-          >
-            <button 
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('early-access')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-8 py-4 bg-rose-600 hover:bg-rose-700 text-white rounded-2xl font-bold text-lg transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(225,29,72,0.4)] w-full sm:w-auto"
+          <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
+            <Link
+              href="/start-selling"
+              className="w-full sm:w-auto bg-zinc-900 text-white px-8 py-4 rounded-xl text-base font-semibold hover:bg-zinc-800 transition-colors text-center shadow-lg shadow-zinc-200"
             >
-              Apply for Early Access
-            </button>
-            <button 
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-8 py-4 bg-white/5 hover:bg-white/10 dark:bg-zinc-800/50 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-2 hover:scale-105 w-full sm:w-auto"
+              Become a Founding Creator
+            </Link>
+            <Link
+              href="/platform"
+              className="group flex items-center justify-center gap-2 text-zinc-500 hover:text-zinc-900 font-medium transition-colors"
             >
-              View Platform Demo
-            </button>
-          </motion.div>
-        </motion.div>
+              See the platform
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
 
-        {/* Right Column: Interactive Mockup */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40, rotateY: 10, rotateX: 5 }}
-          animate={{ opacity: 1, y: 0, rotateY: 0, rotateX: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative lg:ml-auto w-full max-w-md mx-auto perspective-1000"
-        >
-          {/* Floating elements to add depth */}
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-6 -right-6 z-20 bg-white dark:bg-zinc-900 p-4 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 flex items-center gap-3"
-          >
-            <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600">
-              <ShoppingBag className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-xs font-bold text-zinc-500">Multi-Cart</div>
-              <div className="text-sm font-bold">2 items added</div>
-            </div>
-          </motion.div>
-
-          {/* Main Mockup Card */}
-          <div className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-2xl border border-white/40 dark:border-zinc-800/50 rounded-[2rem] shadow-2xl overflow-hidden relative">
-            <div className="p-6 border-b border-zinc-100 dark:border-zinc-800/50 bg-white/50 dark:bg-zinc-900/50">
-              <div className="flex items-center gap-3 w-full bg-zinc-100 dark:bg-zinc-800/80 rounded-xl px-4 py-3">
-                <Search className="w-5 h-5 text-zinc-400" />
-                <span className="text-sm text-zinc-500">Search creators, products...</span>
+        {/* Right Column: High-Fidelity UI Mockups */}
+        <div className="relative h-[600px] w-full hidden lg:block">
+          
+          {/* Main Browser Window Mockup */}
+          <div className="absolute top-0 right-0 w-[550px] bg-white rounded-2xl shadow-2xl shadow-zinc-200/50 border border-zinc-200 overflow-hidden transform translate-x-12 translate-y-4">
+            {/* Browser Chrome */}
+            <div className="h-10 border-b border-zinc-100 bg-zinc-50 flex items-center px-4 gap-2">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-zinc-300" />
+                <div className="w-3 h-3 rounded-full bg-zinc-300" />
+                <div className="w-3 h-3 rounded-full bg-zinc-300" />
+              </div>
+              <div className="mx-auto bg-white border border-zinc-200 rounded-md h-6 w-48 text-[10px] text-zinc-400 flex items-center justify-center font-medium">
+                ekora.in/search
               </div>
             </div>
-            
-            <div className="p-6 bg-zinc-50/50 dark:bg-zinc-950/30 space-y-4">
-              {/* Creator Card 1 */}
-              <div
-                onClick={() => document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' })} 
-                className="block bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer group"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100" alt="Creator" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold flex items-center gap-1 text-zinc-900 dark:text-white">
-                      Anika's Art <BadgeCheck className="w-3.5 h-3.5 text-blue-500" />
-                    </h4>
-                    <div className="flex items-center gap-1 text-xs text-zinc-500">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" /> 4.9
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs text-zinc-500 mb-0.5">Handcrafted Vase</div>
-                    <div className="text-sm font-bold text-zinc-900 dark:text-white">₹1,299</div>
-                  </div>
-                  <button className="h-8 px-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-bold hover:bg-rose-500 hover:text-white transition-colors">
-                    Add
-                  </button>
-                </div>
-              </div>
 
-              {/* Creator Card 2 */}
-              <div 
-                onClick={() => document.getElementById('platform')?.scrollIntoView({ behavior: 'smooth' })}
-                className="block bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer group"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=100&h=100" alt="Creator" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold flex items-center gap-1 text-zinc-900 dark:text-white">
-                      CraftedByPreya <BadgeCheck className="w-3.5 h-3.5 text-blue-500" />
-                    </h4>
-                    <div className="flex items-center gap-1 text-xs text-zinc-500">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" /> 4.8
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs text-zinc-500 mb-0.5">Rose Gold Candle</div>
-                    <div className="text-sm font-bold text-zinc-900 dark:text-white">₹890</div>
-                  </div>
-                  <button className="h-8 px-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-bold hover:bg-rose-500 hover:text-white transition-colors">
-                    Add
-                  </button>
+            {/* App UI Header */}
+            <div className="px-6 py-4 border-b border-zinc-100 flex items-center justify-between">
+              <div className="font-semibold text-zinc-900">Ekora</div>
+              <div className="flex items-center gap-4 text-xs font-medium text-zinc-500">
+                <span>Discover</span>
+                <span>Creators</span>
+                <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center">
+                  <ShoppingBag className="w-4 h-4 text-zinc-900" />
                 </div>
               </div>
             </div>
-            
-            <div className="p-4 border-t border-zinc-100 dark:border-zinc-800/50 bg-white dark:bg-zinc-900">
-              <button className="w-full py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl text-sm font-bold shadow-lg hover:scale-[1.02] transition-transform">
-                Checkout 2 items — ₹2,189
-              </button>
+
+            {/* App UI Body */}
+            <div className="p-6 bg-zinc-50/50 h-[450px]">
+              <div className="relative mb-6">
+                <Search className="absolute left-3 top-2.5 w-4 h-4 text-zinc-400" />
+                <input 
+                  type="text"
+                  readOnly
+                  value="Hand-poured soy candles"
+                  className="w-full bg-white border border-zinc-200 rounded-lg pl-10 pr-4 py-2 text-sm font-medium text-zinc-900 shadow-sm focus:outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {/* Product Card 1 */}
+                <div className="bg-white p-3 rounded-xl border border-zinc-100 shadow-sm">
+                  <div className="relative aspect-square rounded-lg overflow-hidden mb-3 bg-zinc-100">
+                     <Image src="/images/candles.png" alt="Candle" fill className="object-cover" />
+                  </div>
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <div className="w-4 h-4 rounded-full bg-zinc-200 text-[8px] flex items-center justify-center font-bold">C</div>
+                    <span className="text-[10px] font-medium text-zinc-500">The Candle Studio</span>
+                    <ShieldCheck className="w-3 h-3 text-green-500" />
+                  </div>
+                  <h4 className="text-sm font-semibold text-zinc-900 leading-tight mb-2">Vanilla Bean Soy Candle</h4>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold text-zinc-900">₹450</span>
+                    <button className="bg-zinc-900 text-white text-[10px] font-semibold px-3 py-1.5 rounded-md">Add</button>
+                  </div>
+                </div>
+
+                {/* Product Card 2 */}
+                <div className="bg-white p-3 rounded-xl border border-zinc-100 shadow-sm">
+                  <div className="relative aspect-square rounded-lg overflow-hidden mb-3 bg-zinc-100">
+                     <Image src="/images/pottery.png" alt="Pottery" fill className="object-cover" />
+                  </div>
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <div className="w-4 h-4 rounded-full bg-zinc-200 text-[8px] flex items-center justify-center font-bold">E</div>
+                    <span className="text-[10px] font-medium text-zinc-500">Earth & Clay</span>
+                    <ShieldCheck className="w-3 h-3 text-green-500" />
+                  </div>
+                  <h4 className="text-sm font-semibold text-zinc-900 leading-tight mb-2">Speckled Ceramic Mug</h4>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold text-zinc-900">₹890</span>
+                    <button className="bg-zinc-900 text-white text-[10px] font-semibold px-3 py-1.5 rounded-md">Add</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
+
+          {/* Floating Analytics Card (Foreground) */}
+          <div className="absolute bottom-12 left-0 w-64 bg-white rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-zinc-200 p-5 transform -translate-x-4 z-20">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <div className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Today&apos;s Sales</div>
+                <div className="text-lg font-bold text-zinc-900">₹12,450</div>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-zinc-500 flex items-center gap-1.5"><DollarSign className="w-4 h-4" /> Revenue</span>
+                <span className="font-semibold text-green-600">+24%</span>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-zinc-500 flex items-center gap-1.5"><ShoppingBag className="w-4 h-4" /> Orders</span>
+                <span className="font-semibold text-zinc-900">32</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
