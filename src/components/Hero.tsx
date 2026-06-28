@@ -4,20 +4,20 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="bg-white pt-32 pb-16 overflow-hidden">
+    <section className="bg-brand-bg pt-32 pb-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
         {/* Left Column: Copy & CTAs */}
         <div className="flex flex-col items-start text-left relative z-10">
-          <div className="inline-flex items-center gap-2 border border-zinc-200 bg-zinc-50 rounded-full px-3 py-1 text-xs font-semibold text-zinc-600 mb-8 shadow-sm">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 border border-brand-linen bg-white rounded-full px-3 py-1 text-xs font-semibold text-brand-charcoal/70 mb-8 shadow-sm">
+            <div className="w-2 h-2 rounded-full bg-brand-sage animate-pulse" />
             Early Access — First 100 Founding Creators
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif tracking-tight text-zinc-900 mb-6 leading-[1.1]">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-serif tracking-tight text-brand-charcoal mb-6 leading-[1.1]">
             India&apos;s First Creator Commerce Platform.
           </h1>
 
-          <p className="text-xl text-zinc-500 mb-10 max-w-lg leading-relaxed">
+          <p className="text-xl text-brand-charcoal/60 mb-10 max-w-lg leading-relaxed">
             Helping Instagram creators build real businesses beyond DMs. One
             professional storefront. One secure checkout.
           </p>
@@ -25,13 +25,13 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
             <Link
               href="/start-selling"
-              className="w-full sm:w-auto bg-zinc-900 text-white px-8 py-4 rounded-xl text-base font-semibold hover:bg-zinc-800 transition-colors text-center shadow-lg shadow-zinc-200"
+              className="w-full sm:w-auto bg-brand-orange text-white px-8 py-4 rounded-xl text-base font-semibold hover:bg-brand-terracotta hover:scale-[1.02] active:scale-[0.98] transition-all text-center shadow-lg shadow-brand-orange/20"
             >
-              Become a Founding Creator
+              Sell with us
             </Link>
             <Link
               href="/platform"
-              className="group flex items-center justify-center gap-2 text-zinc-500 hover:text-zinc-900 font-medium transition-colors"
+              className="group flex items-center justify-center gap-2 text-brand-charcoal/60 hover:text-brand-charcoal font-medium transition-all duration-200"
             >
               See the platform
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

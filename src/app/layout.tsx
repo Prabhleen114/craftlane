@@ -41,13 +41,16 @@ export const metadata: Metadata = {
   },
 };
 
+import WhatsAppButton from "@/components/WhatsAppButton";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${newsreader.variable} font-sans antialiased bg-white text-zinc-900`}>
+      <body className={`${inter.variable} ${newsreader.variable} font-sans antialiased bg-brand-bg text-brand-charcoal`}>
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

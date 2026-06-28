@@ -38,7 +38,7 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          isScrolled || mobileMenuOpen ? "bg-white border-b border-zinc-200" : "bg-white/80 backdrop-blur-md"
+          isScrolled || mobileMenuOpen ? "bg-brand-bg border-b border-brand-linen" : "bg-brand-bg/80 backdrop-blur-md"
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
@@ -46,7 +46,7 @@ export default function Navbar() {
           <div className="flex-1 flex justify-start">
             <Link
               href="/"
-              className="font-semibold text-xl text-zinc-900 tracking-tight"
+              className="font-semibold text-xl text-brand-charcoal tracking-tight font-serif"
               onClick={() => setMobileMenuOpen(false)}
             >
               Ekora
@@ -59,7 +59,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors"
+                className="text-sm font-medium text-brand-charcoal/60 hover:text-brand-charcoal transition-colors"
               >
                 {link.name}
               </Link>
@@ -70,13 +70,13 @@ export default function Navbar() {
           <div className="flex-1 flex justify-end items-center gap-4">
             <Link
               href="/start-selling"
-              className="hidden md:inline-flex items-center justify-center border border-zinc-300 rounded-full px-5 py-2 text-sm font-semibold text-zinc-900 hover:border-zinc-400 hover:bg-zinc-50 transition-all"
+              className="hidden md:inline-flex items-center justify-center bg-brand-orange hover:bg-brand-terracotta text-white rounded-full px-5 py-2.5 text-sm font-semibold transition-all shadow-md shadow-brand-orange/10 hover:scale-[1.02]"
             >
               Start Selling
             </Link>
 
             <button
-              className="md:hidden p-2 -mr-2 text-zinc-900 focus:outline-none"
+              className="md:hidden p-2 -mr-2 text-brand-charcoal focus:outline-none"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -94,14 +94,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden flex flex-col"
+            className="fixed inset-0 z-40 bg-brand-bg pt-24 px-6 md:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 flex-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-3xl font-bold font-serif tracking-tight text-zinc-900 hover:text-zinc-600 transition-colors"
+                  className="text-3xl font-bold font-serif tracking-tight text-brand-charcoal hover:text-brand-charcoal/70 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -112,7 +112,7 @@ export default function Navbar() {
             <div className="pb-12 mt-auto">
               <Link
                 href="/start-selling"
-                className="flex items-center justify-center bg-zinc-900 text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-zinc-800 transition-colors"
+                className="flex items-center justify-center bg-brand-orange text-white rounded-xl px-6 py-4 text-lg font-semibold w-full hover:bg-brand-terracotta transition-all shadow-lg shadow-brand-orange/15 text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Start Selling Today
